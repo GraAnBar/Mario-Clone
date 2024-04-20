@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://lhdtonhexgfx"]
+
+[ext_resource type="Texture2D" uid="uid://dmltd6f07cf7i" path="res://Assets/coin.png" id="1_jaou0"]
+[ext_resource type="Script" path="res://Scripts/coin.gd" id="2_cwppg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ibxrt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jaou0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Coin" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ibxrt")
+script = ExtResource("2_cwppg")

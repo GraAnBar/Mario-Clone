@@ -1,0 +1,585 @@
+[gd_scene load_steps=19 format=3 uid="uid://7fee5lqbn6cw"]
+
+[ext_resource type="Texture2D" uid="uid://dpdell2g5vi4f" path="res://Assets/ground.png" id="1_mxkhs"]
+[ext_resource type="Texture2D" uid="uid://t685ageq3rsx" path="res://Assets/block.png" id="2_bc1pi"]
+[ext_resource type="Texture2D" uid="uid://dpprlou7jc17t" path="res://Assets/ground2.png" id="3_vw7rg"]
+[ext_resource type="PackedScene" uid="uid://be8jk2y8aaojf" path="res://Scenes/player.tscn" id="4_egr6m"]
+[ext_resource type="PackedScene" uid="uid://diooeavccu4qf" path="res://Scenes/brick.tscn" id="5_6vmsa"]
+[ext_resource type="PackedScene" uid="uid://ywsqdn1p3dd7" path="res://Scenes/goomba.tscn" id="5_vo1cg"]
+[ext_resource type="PackedScene" uid="uid://cd705f4n6jixk" path="res://Scenes/mystery_box.tscn" id="6_628sy"]
+[ext_resource type="Script" path="res://Scripts/level_manager.gd" id="8_pbhp7"]
+[ext_resource type="PackedScene" uid="uid://c48f8dlnbeqor" path="res://Scenes/pipe.tscn" id="9_hyodt"]
+[ext_resource type="PackedScene" uid="uid://h0ka1xjjmlei" path="res://Scenes/flag.tscn" id="10_lu7rx"]
+[ext_resource type="PackedScene" uid="uid://rp1ooqgstv5e" path="res://Scenes/ui.tscn" id="10_ueoes"]
+[ext_resource type="PackedScene" uid="uid://dmvgsslbhwt5v" path="res://Scenes/fall_down_area.tscn" id="11_8dq11"]
+[ext_resource type="Texture2D" uid="uid://palj5vx3twl4" path="res://Assets/castle.png" id="13_a4xpi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d1ubw"]
+texture = ExtResource("1_mxkhs")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v74c8"]
+texture = ExtResource("2_bc1pi")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kl5eh"]
+texture = ExtResource("3_vw7rg")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_kkrni"]
+physics_layer_0/collision_layer = 2
+sources/0 = SubResource("TileSetAtlasSource_d1ubw")
+sources/1 = SubResource("TileSetAtlasSource_v74c8")
+sources/3 = SubResource("TileSetAtlasSource_kl5eh")
+
+[sub_resource type="Curve2D" id="Curve2D_8gr8i"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -8, 0, 0, 0, 0, 30, -20, 0, 0, 0, 0, 46, -2)
+}
+point_count = 3
+
+[node name="main" type="Node"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_kkrni")
+format = 2
+layer_0/tile_data = PackedInt32Array(393203, 0, 0, 393204, 0, 0, 393205, 0, 0, 393206, 0, 0, 393207, 0, 0, 393208, 0, 0, 393209, 0, 0, 393210, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 458739, 3, 0, 524275, 3, 0, 458740, 3, 0, 524276, 3, 0, 458741, 3, 0, 524277, 3, 0, 458742, 3, 0, 524278, 3, 0, 458743, 3, 0, 524279, 3, 0, 458744, 3, 0, 524280, 3, 0, 458745, 3, 0, 524281, 3, 0, 458746, 3, 0, 524282, 3, 0, 458747, 3, 0, 524283, 3, 0, 458748, 3, 0, 524284, 3, 0, 458749, 3, 0, 524285, 3, 0, 458750, 3, 0, 524286, 3, 0, 458751, 3, 0, 524287, 3, 0, 393216, 3, 0, 458752, 3, 0, 393217, 3, 0, 458753, 3, 0, 393218, 3, 0, 458754, 3, 0, 393219, 3, 0, 458755, 3, 0, 393220, 3, 0, 458756, 3, 0, 393221, 3, 0, 458757, 3, 0, 393222, 3, 0, 458758, 3, 0, 393223, 3, 0, 458759, 3, 0, 393224, 3, 0, 458760, 3, 0, 393225, 3, 0, 458761, 3, 0, 393226, 3, 0, 458762, 3, 0, 393227, 3, 0, 458763, 3, 0, 393228, 3, 0, 458764, 3, 0, 393229, 3, 0, 458765, 3, 0, 393202, 0, 0, 458738, 3, 0, 524274, 3, 0, 327694, 0, 0, 327695, 0, 0, 327696, 0, 0, 327697, 0, 0, 327698, 0, 0, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 0, 0, 327703, 0, 0, 327704, 0, 0, 327705, 0, 0, 327706, 0, 0, 327707, 0, 0, 327708, 0, 0, 327709, 0, 0, 327710, 0, 0, 327754, 0, 0, 327755, 0, 0, 393230, 3, 0, 458766, 3, 0, 393231, 3, 0, 458767, 3, 0, 393232, 3, 0, 458768, 3, 0, 393233, 3, 0, 458769, 3, 0, 393234, 3, 0, 458770, 3, 0, 393235, 3, 0, 458771, 3, 0, 393236, 3, 0, 458772, 3, 0, 393237, 3, 0, 458773, 3, 0, 393238, 3, 0, 458774, 3, 0, 393239, 3, 0, 458775, 3, 0, 393240, 3, 0, 458776, 3, 0, 393241, 3, 0, 458777, 3, 0, 393242, 3, 0, 458778, 3, 0, 393243, 3, 0, 458779, 3, 0, 393244, 3, 0, 458780, 3, 0, 393245, 3, 0, 458781, 3, 0, 393246, 3, 0, 458782, 3, 0, 327711, 0, 0, 327712, 0, 0, 327713, 0, 0, 327714, 0, 0, 327715, 0, 0, 327716, 0, 0, 327717, 0, 0, 327718, 0, 0, 327722, 0, 0, 327723, 0, 0, 327724, 0, 0, 327725, 0, 0, 327726, 0, 0, 393247, 3, 0, 458783, 3, 0, 393248, 3, 0, 458784, 3, 0, 393249, 3, 0, 458785, 3, 0, 393250, 3, 0, 458786, 3, 0, 393251, 3, 0, 458787, 3, 0, 393252, 3, 0, 458788, 3, 0, 393253, 3, 0, 458789, 3, 0, 393254, 3, 0, 458790, 3, 0, 393258, 3, 0, 458794, 3, 0, 393259, 3, 0, 458795, 3, 0, 393260, 3, 0, 458796, 3, 0, 393261, 3, 0, 458797, 3, 0, 393262, 3, 0, 458798, 3, 0, 327727, 0, 0, 327728, 0, 0, 327729, 0, 0, 327730, 0, 0, 327731, 0, 0, 327732, 0, 0, 327733, 0, 0, 327734, 0, 0, 327735, 0, 0, 327744, 0, 0, 327745, 0, 0, 327746, 0, 0, 327747, 0, 0, 327748, 0, 0, 327749, 0, 0, 327750, 0, 0, 327751, 0, 0, 327752, 0, 0, 327753, 0, 0, 327756, 0, 0, 327757, 0, 0, 327758, 0, 0, 327759, 0, 0, 327760, 0, 0, 327761, 0, 0, 327762, 0, 0, 327763, 0, 0, 327764, 0, 0, 327765, 0, 0, 327766, 0, 0, 327767, 0, 0, 327768, 0, 0, 327769, 0, 0, 327736, 0, 0, 327737, 0, 0, 327738, 0, 0, 327739, 0, 0, 327740, 0, 0, 393263, 3, 0, 458799, 3, 0, 393264, 3, 0, 458800, 3, 0, 393265, 3, 0, 458801, 3, 0, 393266, 3, 0, 458802, 3, 0, 393267, 3, 0, 458803, 3, 0, 393268, 3, 0, 458804, 3, 0, 393269, 3, 0, 458805, 3, 0, 393270, 3, 0, 458806, 3, 0, 393271, 3, 0, 458807, 3, 0, 393272, 3, 0, 458808, 3, 0, 393273, 3, 0, 458809, 3, 0, 393274, 3, 0, 458810, 3, 0, 393275, 3, 0, 458811, 3, 0, 393276, 3, 0, 458812, 3, 0, 393280, 3, 0, 458816, 3, 0, 393281, 3, 0, 458817, 3, 0, 393282, 3, 0, 458818, 3, 0, 393283, 3, 0, 458819, 3, 0, 393284, 3, 0, 458820, 3, 0, 393285, 3, 0, 458821, 3, 0, 393286, 3, 0, 458822, 3, 0, 393287, 3, 0, 458823, 3, 0, 393288, 3, 0, 458824, 3, 0, 393289, 3, 0, 458825, 3, 0, 393290, 3, 0, 458826, 3, 0, 393291, 3, 0, 458827, 3, 0, 393292, 3, 0, 458828, 3, 0, 393293, 3, 0, 458829, 3, 0, 393294, 3, 0, 458830, 3, 0, 393295, 3, 0, 458831, 3, 0, 393296, 3, 0, 458832, 3, 0, 393297, 3, 0, 458833, 3, 0, 393298, 3, 0, 458834, 3, 0, 393299, 3, 0, 458835, 3, 0, 65606, 3, 0, 327770, 0, 0, 327771, 0, 0, 327772, 0, 0, 327773, 0, 0, 327774, 0, 0, 327775, 0, 0, 327776, 0, 0, 327777, 0, 0, 327778, 0, 0, 327779, 0, 0, 327780, 0, 0, 327781, 0, 0, 327782, 0, 0, 327783, 0, 0, 327784, 0, 0, 327785, 0, 0, 327786, 0, 0, 327787, 0, 0, 327788, 0, 0, 327789, 0, 0, 327790, 0, 0, 327791, 0, 0, 327792, 0, 0, 327793, 0, 0, 327794, 0, 0, 327795, 0, 0, 327796, 0, 0, 327797, 0, 0, 327798, 0, 0, 327799, 0, 0, 327800, 0, 0, 327801, 0, 0, 327802, 0, 0, 327803, 0, 0, 327804, 0, 0, 327805, 0, 0, 327806, 0, 0, 327807, 0, 0, 327808, 0, 0, 327809, 0, 0, 327810, 0, 0, 327815, 0, 0, 327816, 0, 0, 327817, 0, 0, 327818, 0, 0, 327819, 0, 0, 327820, 0, 0, 327821, 0, 0, 327822, 0, 0, 327823, 0, 0, 327824, 0, 0, 327825, 0, 0, 327826, 0, 0, 327827, 0, 0, 327828, 0, 0, 327814, 0, 0, 327829, 0, 0, 327830, 0, 0, 327831, 0, 0, 327832, 0, 0, 327833, 0, 0, 327834, 0, 0, 327835, 0, 0, 327836, 0, 0, 327837, 0, 0, 327838, 0, 0, 327839, 0, 0, 327840, 0, 0, 327841, 0, 0, 327842, 0, 0, 327843, 0, 0, 327844, 0, 0, 327845, 0, 0, 327846, 0, 0, 327847, 0, 0, 327848, 0, 0, 327849, 0, 0, 327850, 0, 0, 327851, 0, 0, 327852, 0, 0, 327853, 0, 0, 327854, 0, 0, 327855, 0, 0, 327856, 0, 0, 327857, 0, 0, 327858, 0, 0, 327859, 0, 0, 327860, 0, 0, 327861, 0, 0, 327862, 0, 0, 327863, 0, 0, 327864, 0, 0, 327865, 0, 0, 327866, 0, 0, 327867, 0, 0, 327868, 0, 0, 327869, 0, 0, 327870, 0, 0, 327871, 0, 0, 327872, 0, 0, 327873, 0, 0, 327874, 0, 0, 327875, 0, 0, 327876, 0, 0, 393300, 3, 0, 458836, 3, 0, 393301, 3, 0, 458837, 3, 0, 393302, 3, 0, 458838, 3, 0, 393303, 3, 0, 458839, 3, 0, 393304, 3, 0, 458840, 3, 0, 393305, 3, 0, 458841, 3, 0, 393306, 3, 0, 458842, 3, 0, 393307, 3, 0, 458843, 3, 0, 393308, 3, 0, 458844, 3, 0, 393309, 3, 0, 458845, 3, 0, 393310, 3, 0, 458846, 3, 0, 393311, 3, 0, 458847, 3, 0, 393312, 3, 0, 458848, 3, 0, 393313, 3, 0, 458849, 3, 0, 393314, 3, 0, 458850, 3, 0, 393315, 3, 0, 458851, 3, 0, 393316, 3, 0, 458852, 3, 0, 393317, 3, 0, 458853, 3, 0, 393318, 3, 0, 458854, 3, 0, 393319, 3, 0, 458855, 3, 0, 393320, 3, 0, 458856, 3, 0, 393321, 3, 0, 458857, 3, 0, 393322, 3, 0, 458858, 3, 0, 393323, 3, 0, 458859, 3, 0, 393324, 3, 0, 458860, 3, 0, 393325, 3, 0, 458861, 3, 0, 393326, 3, 0, 458862, 3, 0, 393327, 3, 0, 458863, 3, 0, 393328, 3, 0, 458864, 3, 0, 393329, 3, 0, 458865, 3, 0, 393330, 3, 0, 458866, 3, 0, 393331, 3, 0, 458867, 3, 0, 393332, 3, 0, 458868, 3, 0, 393333, 3, 0, 458869, 3, 0, 393334, 3, 0, 458870, 3, 0, 393335, 3, 0, 458871, 3, 0, 393336, 3, 0, 458872, 3, 0, 393337, 3, 0, 458873, 3, 0, 393338, 3, 0, 458874, 3, 0, 393339, 3, 0, 458875, 3, 0, 393340, 3, 0, 458876, 3, 0, 393341, 3, 0, 458877, 3, 0, 393342, 3, 0, 458878, 3, 0, 393343, 3, 0, 458879, 3, 0, 393344, 3, 0, 458880, 3, 0, 393345, 3, 0, 458881, 3, 0, 393346, 3, 0, 458882, 3, 0, 393350, 3, 0, 458886, 3, 0, 393351, 3, 0, 458887, 3, 0, 393352, 3, 0, 458888, 3, 0, 393353, 3, 0, 458889, 3, 0, 393354, 3, 0, 458890, 3, 0, 393355, 3, 0, 458891, 3, 0, 393356, 3, 0, 458892, 3, 0, 393357, 3, 0, 458893, 3, 0, 393358, 3, 0, 458894, 3, 0, 393359, 3, 0, 458895, 3, 0, 393360, 3, 0, 458896, 3, 0, 393361, 3, 0, 458897, 3, 0, 393362, 3, 0, 458898, 3, 0, 393363, 3, 0, 458899, 3, 0, 393364, 3, 0, 458900, 3, 0, 393365, 3, 0, 458901, 3, 0, 393366, 3, 0, 458902, 3, 0, 393367, 3, 0, 458903, 3, 0, 393368, 3, 0, 458904, 3, 0, 393369, 3, 0, 458905, 3, 0, 393370, 3, 0, 458906, 3, 0, 393371, 3, 0, 458907, 3, 0, 393372, 3, 0, 458908, 3, 0, 393373, 3, 0, 458909, 3, 0, 393374, 3, 0, 458910, 3, 0, 393375, 3, 0, 458911, 3, 0, 393376, 3, 0, 458912, 3, 0, 393377, 3, 0, 458913, 3, 0, 393378, 3, 0, 458914, 3, 0, 393379, 3, 0, 458915, 3, 0, 393380, 3, 0, 458916, 3, 0, 393381, 3, 0, 458917, 3, 0, 393382, 3, 0, 458918, 3, 0, 393383, 3, 0, 458919, 3, 0, 393384, 3, 0, 458920, 3, 0, 393385, 3, 0, 458921, 3, 0, 393386, 3, 0, 458922, 3, 0, 393387, 3, 0, 458923, 3, 0, 393388, 3, 0, 458924, 3, 0, 393389, 3, 0, 458925, 3, 0, 393390, 3, 0, 458926, 3, 0, 393391, 3, 0, 458927, 3, 0, 393392, 3, 0, 458928, 3, 0, 393393, 3, 0, 458929, 3, 0, 393394, 3, 0, 458930, 3, 0, 393395, 3, 0, 458931, 3, 0, 393396, 3, 0, 458932, 3, 0, 393397, 3, 0, 458933, 3, 0, 393398, 3, 0, 458934, 3, 0, 393399, 3, 0, 458935, 3, 0, 393400, 3, 0, 458936, 3, 0, 393401, 3, 0, 458937, 3, 0, 393402, 3, 0, 458938, 3, 0, 393403, 3, 0, 458939, 3, 0, 393404, 3, 0, 458940, 3, 0, 393405, 3, 0, 458941, 3, 0, 393406, 3, 0, 458942, 3, 0, 393407, 3, 0, 458943, 3, 0, 393408, 3, 0, 458944, 3, 0, 393409, 3, 0, 458945, 3, 0, 393410, 3, 0, 458946, 3, 0, 393411, 3, 0, 458947, 3, 0, 393412, 3, 0, 458948, 3, 0, 262312, 3, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.75, 2.75)
+
+[node name="Player" parent="." node_paths=PackedStringArray("camera_sync", "castle_path") instance=ExtResource("4_egr6m")]
+position = Vector2(-152, 32)
+camera_sync = NodePath("../Camera2D")
+castle_path = NodePath("../Path2D/PathFollow2D")
+
+[node name="UI" parent="." instance=ExtResource("10_ueoes")]
+
+[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("ui", "player") groups=["level_manager"]]
+script = ExtResource("8_pbhp7")
+ui = NodePath("../UI")
+player = NodePath("../Player")
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Platforms" type="Node" parent="Environment"]
+
+[node name="Brick" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(-40, 24)
+
+[node name="Brick2" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(-8, 24)
+
+[node name="Brick3" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(24, 24)
+
+[node name="Brick4" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(768, 24)
+
+[node name="Brick5" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(800, 24)
+
+[node name="Brick6" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(816, -32)
+
+[node name="Brick7" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(832, -32)
+
+[node name="Brick8" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(848, -32)
+
+[node name="Brick9" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(864, -32)
+
+[node name="Brick10" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(880, -32)
+
+[node name="Brick11" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(896, -32)
+
+[node name="Brick12" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(912, -32)
+
+[node name="Brick13" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(928, -32)
+
+[node name="Brick14" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(944, -32)
+
+[node name="Brick15" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(960, -32)
+
+[node name="Brick16" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(976, -32)
+
+[node name="Brick17" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(992, -32)
+
+[node name="Brick18" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1008, -32)
+
+[node name="Brick19" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1024, -32)
+
+[node name="Brick20" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1080, -32)
+
+[node name="Brick21" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1096, -32)
+
+[node name="Brick22" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1112, -32)
+
+[node name="Brick23" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1232, 24)
+
+[node name="Brick24" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1552, 24)
+
+[node name="Brick25" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1592, -40)
+
+[node name="Brick26" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1608, -40)
+
+[node name="Brick27" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1712, 24)
+
+[node name="Brick28" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1728, 24)
+
+[node name="Brick29" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1624, -40)
+
+[node name="Brick30" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1696, -40)
+
+[node name="Brick31" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1744, -40)
+
+[node name="MysteryBox" parent="Environment/Platforms" instance=ExtResource("6_628sy")]
+position = Vector2(-88, 24)
+
+[node name="MysteryBox3" parent="Environment/Platforms" instance=ExtResource("6_628sy")]
+position = Vector2(-8, -32)
+
+[node name="MysteryBox2" parent="Environment/Platforms" instance=ExtResource("6_628sy")]
+position = Vector2(8, 24)
+
+[node name="MysteryBox4" parent="Environment/Platforms" instance=ExtResource("6_628sy")]
+position = Vector2(1128, -32)
+
+[node name="MysteryBox5" parent="Environment/Platforms" instance=ExtResource("6_628sy")]
+position = Vector2(1128, 24)
+
+[node name="MysteryBox6" parent="Environment/Platforms" instance=ExtResource("6_628sy")]
+position = Vector2(1344, 24)
+
+[node name="MysteryBox7" parent="Environment/Platforms" instance=ExtResource("6_628sy")]
+position = Vector2(1400, 24)
+
+[node name="MysteryBox8" parent="Environment/Platforms" instance=ExtResource("6_628sy")]
+position = Vector2(1456, 24)
+
+[node name="MysteryBox9" parent="Environment/Platforms" instance=ExtResource("6_628sy")]
+position = Vector2(1712, -40)
+
+[node name="MysteryBox10" parent="Environment/Platforms" instance=ExtResource("6_628sy")]
+position = Vector2(1728, -40)
+
+[node name="MysteryBox11" parent="Environment/Platforms" instance=ExtResource("6_628sy")]
+position = Vector2(2392, 24)
+
+[node name="Brick41" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2360, 24)
+
+[node name="Brick42" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2376, 24)
+
+[node name="Brick43" parent="Environment/Platforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2408, 24)
+
+[node name="MysteryBoxes(Mushroom)" type="Node" parent="Environment"]
+
+[node name="MysteryBox2" parent="Environment/MysteryBoxes(Mushroom)" instance=ExtResource("6_628sy")]
+position = Vector2(-24, 24)
+bonus_type = 1
+
+[node name="MysteryBox3" parent="Environment/MysteryBoxes(Mushroom)" instance=ExtResource("6_628sy")]
+position = Vector2(784, 24)
+bonus_type = 1
+
+[node name="MysteryBox6" parent="Environment/MysteryBoxes(Mushroom)" instance=ExtResource("6_628sy")]
+position = Vector2(1248, 24)
+bonus_type = 1
+
+[node name="MysteryBox7" parent="Environment/MysteryBoxes(Mushroom)" instance=ExtResource("6_628sy")]
+position = Vector2(1400, -40)
+bonus_type = 1
+
+[node name="Pipes" type="Node" parent="Environment"]
+
+[node name="Pipe" parent="Environment/Pipes" instance=ExtResource("9_hyodt")]
+position = Vector2(88, 56)
+
+[node name="Pipe5" parent="Environment/Pipes" instance=ExtResource("9_hyodt")]
+position = Vector2(2288, 56)
+
+[node name="Pipe6" parent="Environment/Pipes" instance=ExtResource("9_hyodt")]
+position = Vector2(2544, 56)
+
+[node name="Pipe2" parent="Environment/Pipes" instance=ExtResource("9_hyodt")]
+position = Vector2(208, 32)
+height = 64
+
+[node name="Pipe3" parent="Environment/Pipes" instance=ExtResource("9_hyodt")]
+position = Vector2(344, 24)
+height = 100
+
+[node name="Pipe4" parent="Environment/Pipes" instance=ExtResource("9_hyodt")]
+position = Vector2(528, 24)
+height = 100
+
+[node name="Placeforms" type="Node" parent="Environment"]
+
+[node name="Brick" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1800, 72)
+
+[node name="Brick20" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1960, 72)
+
+[node name="Brick10" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1832, 40)
+
+[node name="Brick2" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1816, 72)
+
+[node name="Brick3" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1816, 56)
+
+[node name="Brick18" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1944, 72)
+
+[node name="Brick19" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1944, 56)
+
+[node name="Brick4" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1832, 72)
+
+[node name="Brick5" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1832, 56)
+
+[node name="Brick15" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1928, 40)
+
+[node name="Brick16" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1928, 72)
+
+[node name="Brick17" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1928, 56)
+
+[node name="Brick6" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1848, 72)
+
+[node name="Brick7" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1848, 56)
+
+[node name="Brick8" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1848, 40)
+
+[node name="Brick9" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1848, 24)
+
+[node name="Brick21" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2040, 72)
+
+[node name="Brick41" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2024, 72)
+
+[node name="Brick42" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2040, 56)
+
+[node name="Brick43" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2056, 40)
+
+[node name="Brick89" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2072, 24)
+
+[node name="Brick22" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2072, 40)
+
+[node name="Brick23" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2056, 72)
+
+[node name="Brick24" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2056, 56)
+
+[node name="Brick25" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2072, 72)
+
+[node name="Brick26" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2072, 56)
+
+[node name="Brick27" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2088, 72)
+
+[node name="Brick28" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2088, 56)
+
+[node name="Brick29" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2088, 40)
+
+[node name="Brick30" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2088, 24)
+
+[node name="Brick44" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2568, 72)
+
+[node name="Brick58" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2696, 72)
+
+[node name="Brick88" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2776, 72)
+
+[node name="Brick65" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2696, 56)
+
+[node name="Brick72" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2680, -40)
+
+[node name="Brick66" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2696, 40)
+
+[node name="Brick67" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2696, 24)
+
+[node name="Brick68" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2696, 8)
+
+[node name="Brick69" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2696, -8)
+
+[node name="Brick70" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2696, -24)
+
+[node name="Brick73" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2680, 56)
+
+[node name="Brick74" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2680, 40)
+
+[node name="Brick75" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2680, 24)
+
+[node name="Brick79" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2664, 56)
+
+[node name="Brick80" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2664, 40)
+
+[node name="Brick81" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2664, 24)
+
+[node name="Brick82" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2648, 56)
+
+[node name="Brick83" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2648, 40)
+
+[node name="Brick84" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2648, 24)
+
+[node name="Brick85" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2632, 56)
+
+[node name="Brick86" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2632, 40)
+
+[node name="Brick87" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2632, 24)
+
+[node name="Brick76" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2680, 8)
+
+[node name="Brick77" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2680, -8)
+
+[node name="Brick78" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2680, -24)
+
+[node name="Brick71" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2696, -40)
+
+[node name="Brick45" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2600, 40)
+
+[node name="Brick46" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2584, 72)
+
+[node name="Brick47" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2584, 56)
+
+[node name="Brick48" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2600, 72)
+
+[node name="Brick49" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2600, 56)
+
+[node name="Brick50" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2616, 72)
+
+[node name="Brick54" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2632, 72)
+
+[node name="Brick55" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2648, 72)
+
+[node name="Brick56" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2664, 72)
+
+[node name="Brick57" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2680, 72)
+
+[node name="Brick51" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2616, 56)
+
+[node name="Brick52" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2616, 40)
+
+[node name="Brick53" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2616, 24)
+
+[node name="Brick59" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2648, -8)
+
+[node name="Brick60" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2632, 8)
+
+[node name="Brick61" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2648, 8)
+
+[node name="Brick62" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2664, 8)
+
+[node name="Brick63" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2664, -8)
+
+[node name="Brick64" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2664, -24)
+
+[node name="Brick11" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1912, 72)
+
+[node name="Brick12" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1912, 56)
+
+[node name="Brick13" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1912, 40)
+
+[node name="Brick14" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(1912, 24)
+
+[node name="Brick31" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2200, 72)
+
+[node name="Brick32" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2184, 72)
+
+[node name="Brick33" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2184, 56)
+
+[node name="Brick34" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2168, 40)
+
+[node name="Brick35" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2168, 72)
+
+[node name="Brick36" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2168, 56)
+
+[node name="Brick37" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2152, 72)
+
+[node name="Brick38" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2152, 56)
+
+[node name="Brick39" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2152, 40)
+
+[node name="Brick40" parent="Environment/Placeforms" instance=ExtResource("5_6vmsa")]
+position = Vector2(2152, 24)
+
+[node name="Flag" type="Node" parent="Environment"]
+
+[node name="Flag" parent="Environment/Flag" instance=ExtResource("10_lu7rx")]
+position = Vector2(2776, 64)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="goomba" parent="Enemies" instance=ExtResource("5_vo1cg")]
+position = Vector2(16, 48)
+
+[node name="goomba2" parent="Enemies" instance=ExtResource("5_vo1cg")]
+position = Vector2(280, 40)
+
+[node name="goomba3" parent="Enemies" instance=ExtResource("5_vo1cg")]
+position = Vector2(448, 24)
+
+[node name="goomba4" parent="Enemies" instance=ExtResource("5_vo1cg")]
+position = Vector2(896, -64)
+
+[node name="goomba5" parent="Enemies" instance=ExtResource("5_vo1cg")]
+position = Vector2(1168, 48)
+
+[node name="goomba6" parent="Enemies" instance=ExtResource("5_vo1cg")]
+position = Vector2(1352, 48)
+
+[node name="goomba7" parent="Enemies" instance=ExtResource("5_vo1cg")]
+position = Vector2(1608, 48)
+
+[node name="goomba8" parent="Enemies" instance=ExtResource("5_vo1cg")]
+position = Vector2(1656, 48)
+
+[node name="goomba9" parent="Enemies" instance=ExtResource("5_vo1cg")]
+position = Vector2(2440, 56)
+
+[node name="FallDownAreas" type="Node" parent="."]
+
+[node name="FallDownArea" parent="FallDownAreas" instance=ExtResource("11_8dq11")]
+position = Vector2(648, 120)
+
+[node name="FallDownArea2" parent="FallDownAreas" instance=ExtResource("11_8dq11")]
+position = Vector2(1000, 120)
+
+[node name="FallDownArea3" parent="FallDownAreas" instance=ExtResource("11_8dq11")]
+position = Vector2(2120, 120)
+
+[node name="Castle" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(2912, 32.9)
+scale = Vector2(1.1, 1.12143)
+texture = ExtResource("13_a4xpi")
+
+[node name="SlideDownFinishPosition" type="Marker2D" parent="."]
+position = Vector2(2772, 57)
+
+[node name="LandDownMarker" type="Marker2D" parent="."]
+position = Vector2(2818, 80)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(2772, 65)
+curve = SubResource("Curve2D_8gr8i")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, -8)
+rotation = -0.380506
+rotates = false

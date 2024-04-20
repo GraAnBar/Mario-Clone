@@ -1,0 +1,183 @@
+[gd_scene load_steps=13 format=3 uid="uid://be8jk2y8aaojf"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_prky1"]
+[ext_resource type="Shape2D" uid="uid://b2jbsg6icrin1" path="res://Resources/CollisionShapes/small_character_collision_shape.tres" id="2_henah"]
+[ext_resource type="Texture2D" uid="uid://jb8ri66btqwa" path="res://Assets/characterBig_idle.png" id="2_j3u2q"]
+[ext_resource type="Texture2D" uid="uid://b73qvk88ythgy" path="res://Assets/characterBig_jump.png" id="3_vpr0p"]
+[ext_resource type="Texture2D" uid="uid://vyqihwlkn3aa" path="res://Assets/characterBig_run.png" id="4_v7lv4"]
+[ext_resource type="Texture2D" uid="uid://bx48sothhi5bv" path="res://Assets/characterSmall_idle.png" id="5_yqs1l"]
+[ext_resource type="Texture2D" uid="uid://m6pxamexewni" path="res://Assets/characterSmall_death.png" id="6_6ynkt"]
+[ext_resource type="Texture2D" uid="uid://rxkfbjq4la3e" path="res://Assets/characterSmall_jump.png" id="7_jstb0"]
+[ext_resource type="Texture2D" uid="uid://wuplxghq504j" path="res://Assets/characterSmall_run.png" id="8_2u1mg"]
+[ext_resource type="Script" path="res://Scripts/player_animated_sprite.gd" id="9_1ixfq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iwc3s"]
+load_path = "res://.godot/imported/characterSmall_idle.png-32e820d10e57dfa5f5fa8ddfa5c8e042.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_skvf7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_j3u2q")
+}],
+"loop": true,
+"name": &"big_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vpr0p")
+}],
+"loop": true,
+"name": &"big_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_v7lv4")
+}],
+"loop": true,
+"name": &"big_pole",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_v7lv4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j3u2q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v7lv4")
+}],
+"loop": true,
+"name": &"big_run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_j3u2q")
+}],
+"loop": true,
+"name": &"big_slide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_j3u2q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yqs1l")
+}],
+"loop": false,
+"name": &"big_to_small",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_6ynkt")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_iwc3s")
+}],
+"loop": true,
+"name": &"small_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_jstb0")
+}],
+"loop": true,
+"name": &"small_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_2u1mg")
+}],
+"loop": true,
+"name": &"small_pole",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_2u1mg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yqs1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2u1mg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yqs1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2u1mg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yqs1l")
+}],
+"loop": true,
+"name": &"small_run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_yqs1l")
+}],
+"loop": true,
+"name": &"small_slide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_yqs1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j3u2q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yqs1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j3u2q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yqs1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j3u2q")
+}],
+"loop": false,
+"name": &"small_to_big",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 22
+script = ExtResource("1_prky1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_skvf7")
+animation = &"small_run"
+script = ExtResource("9_1ixfq")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 52
+
+[node name="AreaCollisionShape" type="CollisionShape2D" parent="Area2D"]
+shape = ExtResource("2_henah")
+
+[node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
+shape = ExtResource("2_henah")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_frame_changed"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

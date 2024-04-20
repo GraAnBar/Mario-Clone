@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://csmtm2htattxe"]
+
+[ext_resource type="Script" path="res://Scripts/story.gd" id="1_tu45h"]
+[ext_resource type="FontFile" uid="uid://dm3ch1vmt4ixr" path="res://Assets/Fonts/font.ttf" id="2_qo4aq"]
+
+[node name="Story" type="Node"]
+script = ExtResource("1_tu45h")
+
+[node name="Play" type="Button" parent="."]
+offset_left = 256.0
+offset_top = 448.0
+offset_right = 480.0
+offset_bottom = 560.0
+theme_override_fonts/font = ExtResource("2_qo4aq")
+theme_override_font_sizes/font_size = 30
+text = "Play"
+
+[node name="Exit" type="Button" parent="."]
+offset_left = 640.0
+offset_top = 448.0
+offset_right = 864.0
+offset_bottom = 560.0
+theme_override_fonts/font = ExtResource("2_qo4aq")
+theme_override_font_sizes/font_size = 30
+text = "Exit
+"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 248.0
+offset_top = 144.0
+offset_right = 888.0
+offset_bottom = 352.0
+theme_override_fonts/font = ExtResource("2_qo4aq")
+theme_override_font_sizes/font_size = 30
+text = "Maple needs to gather as many carrots as she can for her friends but she has to jump on blocks and hit enemies in the head! She needs your help (The Player) To get her food and read her home!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

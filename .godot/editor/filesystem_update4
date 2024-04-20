@@ -1,0 +1,17 @@
+res://Scenes/main.tscn
+res://Scripts/player.gd
+res://Scenes/player.tscn
+res://Scenes/goomba.tscn
+res://Scenes/points_label.tscn
+res://Scenes/brick.tscn
+res://Scenes/mystery_box.tscn
+res://Scenes/coin.tscn
+res://Scenes/shroom.tscn
+res://Scenes/pipe.tscn
+res://Scenes/ui.tscn
+res://Scenes/fall_down_area.tscn
+res://Scenes/flag.tscn
+res://Scripts/level_manager.gd
+res://Scripts/player_animated_sprite.gd
+res://Scripts/story.gd
+res://Scenes/story.tscn
